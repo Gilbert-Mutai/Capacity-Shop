@@ -62,8 +62,8 @@ h1,h2,h3,h4,h5,h6{
 
 }
 .more{
-	margin-top: 30px;
-	padding: 10px;
+	margin: 0px;
+	padding: 0px;
 }
 
 .product{
@@ -195,13 +195,39 @@ h1,h2,h3,h4,h5,h6{
 
   .view-more{
 	margin: 10px;
+	/* padding: 10px; */
 	
   }
 
   .product-details{
-	padding-top: 10px;
+	text-align: justify;
+	padding: 20px;
+	margin-bottom: 10px;
   }
   .product-details h3{
 	color: #217e32;
 	font-weight: bold;
+	padding: 20px;
+	margin: 20px;
+}
+
+.bordering{
+	border: 1px solid rgb(227, 220, 220);
+	border-radius: 10px;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.bordering h1{
+
+	color:#217e32 ;
+
+}
+
+.profile-header{
+	color: #217e32;
+	font-weight: bold;
+}
+.profile-page{
+	padding: 30px;
 }

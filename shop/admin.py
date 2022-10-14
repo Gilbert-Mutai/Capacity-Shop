@@ -4,4 +4,4 @@ from .models import *
 
 
 admin.site.register(
-    [Customer, Product, Order, OrderItem, ShippingAddress, Category])
+    [User,Customer, Product, Order, OrderItem, ShippingAddress, Category])

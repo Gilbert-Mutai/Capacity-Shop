@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="container register"><br>
+  <div class="row">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6 bordering">
+      <div class="panel-default form-body">
+        <div class="panel-heading">
+          <h1 class="text-center"><b>Signup</b></h1>
+        </div>
+        <div class="panel-body">
+
+          <form action=""  method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="form-group">
+              <input type="submit" class="btn btn-success btn-block" value="Register">
+            </div>
+
+            <input type="hidden" name="newprofile" value ="newprofile">
+
+          </form>
+              <div class="border-bottom pt-3">
+                <p class="text-muted">Already have an account?<a class="ml-2" href="{% url 'login' %}"><i>Login Here</i></a></p>
+              </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+
+{% endblock %}

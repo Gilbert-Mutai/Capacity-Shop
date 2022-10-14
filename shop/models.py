@@ -1,16 +1,26 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+from twilio.rest import Client 
+
+class User(AbstractUser):
+    first_name = models.CharField(max_length=200, null=True)
+    last_name = models.CharField(max_length=200, null=True)
+    email = models.EmailField(unique=True)
+   
+	
+	 # USERNAME_FIELD = 'email'
+
+    REQUIRED_FIELDS = ['first_name','last_name']
+
 
 class Customer(models.Model):
 	user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-	name = models.CharField(max_length=200, null=True)
-	email = models.CharField(max_length=200)
-	# joined_on = models.DateTimeField(auto_now_add=True)
+	joined_on = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return self.name
+		return self.user.first_name + ' ' + self.user.last_name
 
 class Category(models.Model):
     title = models.CharField(max_length=200)
@@ -41,9 +51,30 @@ class Order(models.Model):
 	date_ordered = models.DateTimeField(auto_now_add=True)
 	complete = models.BooleanField(default=False)
 	transaction_id = models.CharField(max_length=100, null=True)
+	STATUS = (('Order Received','Order Received'),('Ready for  Pickup','Ready for  Pickup'))
+	status = models.CharField(max_length=50, choices=STATUS, null=True,default='Order Received')
 
 	def __str__(self):
-		return str(self.id)
+		return "#Order: " + str(self.id)
+	
+	# Sending sms when payment is completed
+
+	# def save(self, *args, **kwargs):
+	# 	if self.complete == True:
+	# 		account_sid = 'AC1c51c3361f816c86025c5959fb4c1639' 
+	# 		auth_token = '0afd00b31e3bce1679ac101b742bbaeb' 
+	# 		client = Client(account_sid, auth_token) 
+			
+	# 		message = client.messages.create(  
+	# 									messaging_service_sid='MGe1b04e835f62fe804cd97889a04cd596', 
+	# 									body='Hello Gilbert, thankyou for shopping with us, you will be notified once the Product is ready for pickup',      
+	# 									to='+254725060098' 
+	# 								) 
+			
+	# 		print(message.sid)
+
+	# 		return super().save(*args, **kwargs)
+
 		
 	@property
 	def shipping(self):
@@ -76,6 +107,11 @@ class OrderItem(models.Model):
 	def get_total(self):
 		total = self.product.price * self.quantity
 		return total
+	
+
+	def __str__(self):
+		return self.product
+		
 
 class ShippingAddress(models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
@@ -88,3 +124,5 @@ class ShippingAddress(models.Model):
 
 	def __str__(self):
 		return self.address
+
+

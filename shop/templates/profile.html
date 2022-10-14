@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}My Profile{% endblock %}
+{% block content %}
+<div class="profile-page">
+    <div class="row">
+        <div class="col-md-4">
+            <h3 class="profile-header">Detail Information</h3><hr>
+            <p><span class="font-weight-bold">Name: </span>{{name}}</p>
+            <p><span class="font-weight-bold">Username: </span>{{customer.user}}</p>
+            <p><span class="font-weight-bold">Email: </span> {{customer.user.email}}</p>
+            <p><span class="font-weight-bold">Joined on: </span>{{customer.joined_on}}</p>
+        </div>
+        <div class="col-md-8">
+            <h3 class="profile-header">Previous Orders</h3>
+            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Order</th>
+                        <th>Ordered on</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in customer.order_set.all %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>#Order {{order.id}}</td>
+                        <td>{{order.date_ordered|timesince}} ago</td>
+                        {% if order.complete == False %}
+                        <td style="color: red;">Notyet Paid</td>
+
+                        {% elif order.status == 'Order Received' %}
+                        <td style="color: blue;">Order Received</td>
+
+                        {% else %}
+                        <td style="color: green;">{{order.status}}</td>
+
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

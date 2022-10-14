@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}View More{% endblock %}
+{% block content %}
+<div class="view-more">
+
+  <div class="row more">
+    <div class="col-2"></div>
+    
+    <div class="col-8 card product-details">
+
+      <img class="thumbnail-more" src="{{product.imageURL}}" />
+      <div class="box-element product">
+        <h4><strong>{{product.name}}</strong></h4>
+        <hr />
+        <span>★★★★★</span>
+        <h5>Product Model</h5>
+        <h6 style="color:maroon">Few units left</h6>
+
+        <h5>
+          <strong>Ksh.{{product.price}}</strong>
+        </h5>
+
+        <hr />
+  
+        <button
+          data-product="{{product.id}}"
+          data-action="add"
+          class="btn btn-success add-btn update-cart btn-block">
+          Add to Cart
+        </button>
+
+       
+      </div>
+
+      <div>
+
+        <h3>Product details</h3>
+  
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+          when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+          It has survived not only five centuries, but also the leap into electronic typesetting,
+           remaining essentially unchanged. It was popularised in the 1960s with the release 
+           of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop 
+           publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+        
+      </div>
+     
+   
+
+    </div>
+    <div class="col-2"></div>
+   
+  </div>
+
+  {% endblock content %}

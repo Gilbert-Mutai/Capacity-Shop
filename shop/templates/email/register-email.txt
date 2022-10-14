@@ -1,0 +1,5 @@
+Hello {{name}}
+Thank you for choosing to have an account with us,this is a place to be ,here you will get ideal services for your business.</p>
+For any inquiries, please contact us on +2547 80 280 777
+
+Best regards,Capacity Ltd

@@ -28,7 +28,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 {% if request.user.customer %}
-                <a class="dropdown-item" href="">Profile</a>
+                <a class="dropdown-item" href="{% url 'profile' user.id %}">Profile</a>
                 <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                 <a class="dropdown-item" href="{% url 'register' %}">Register</a>
@@ -39,14 +39,14 @@
                 
             </div>
 
-    
-        
-           <!-- <a href="#"class="btn btn-dark">Login</a>
-            -->
+            {% if page_name == 'store' or page_name == 'categories' or page_name == 'cart' or page_name == 'viewMore' or page_name == 'checkout' or page_name == 'search' %}
+
            <a href="{% url 'cart' %}">
               <img  id="cart-icon" src="{% static 'images/cart.png' %}">
           </a>
           <p id="cart-total">{{cartItems}}</p>
+
+          {%  endif %}
 
       </div>
     </div>
